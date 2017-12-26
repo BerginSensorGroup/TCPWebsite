@@ -2,7 +2,7 @@ var net = require('net');
 var mysql = require('mysql');
 var controller = require('./controller.js');
 
-const PORT = 5000;
+const PORT = process.env.PORT || 3000;
 const ADDRESS = '127.0.0.1';
 var timer;
 var timeout = 5000;
@@ -28,7 +28,7 @@ var server = net.createServer(function(c) {
   c.on('data', function(data) {
     var datastring = data.toString();
     console.log('data');
-    // controller.parseString(datastring)
+    controller.parse_string(datastring)
   });
 
   c.on('error', function(err) {
@@ -44,4 +44,4 @@ var server = net.createServer(function(c) {
   });
 }).listen(PORT);
 
-console.log("Server is listening on port 5000");
+console.log("Server is listening on port 3000");
